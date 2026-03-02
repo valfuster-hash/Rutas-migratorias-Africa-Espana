@@ -19,10 +19,10 @@ const RUTAS_GEOJSON = {
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [-17.473, 14.692], 
-          [-16.25, 16.03], 
-          [-15.95, 20.9],  
-          [-15.94, 23.7], 
+          [-17.473, 14.692],
+          [-16.25, 16.03],
+          [-15.95, 20.9],
+          [-15.94, 23.7],
           [-17.92, 28.11]
         ]
       }
@@ -75,7 +75,7 @@ const RUTAS_GEOJSON = {
         "peligrosidad": "Alta",
         "distancia_km_aprox": 30,
         "frecuencia_anual_aprox": "Media",
-        "descripcion": "Ruta corta pero peligrosa a través del Estrecho de Gibraltar, identificada como WMR por IOM.",
+        "descripcion": "Ruta corta pero peligrosa a través del Estrecho de Gibraltar.",
         "fuentes": ["IOM DTM"]
       },
       "geometry": {
@@ -115,7 +115,7 @@ const RUTAS_GEOJSON = {
         "peligrosidad": "Alta",
         "distancia_km_aprox": 500,
         "frecuencia_anual_aprox": "Media",
-        "descripcion": "Ruta documentada por IOM desde Argel hacia la costa andaluza.",
+        "descripcion": "Ruta documentada por IOM desde Argel hacia Andalucía.",
         "fuentes": ["IOM DTM"]
       },
       "geometry": {
@@ -152,7 +152,6 @@ const RUTAS_GEOJSON = {
 
 // -------------------------
 // StoryMap (capítulos) con imágenes
-// Usa rutas relativas a una carpeta /images que tú coloques junto al index.html
 // -------------------------
 const config = {
   chapters: [
@@ -201,7 +200,7 @@ const config = {
     {
       codigo: 'WAAR_4',
       title: 'Gambia → Canarias',
-      text: 'Una variante extremadamente peligrosa de la ruta atlántica.',
+      text: 'Una variante extremely peligrosa de la ruta atlántica.',
       image: { src: 'images/WAAR_4.jpg', alt: 'Costa de Gambia con embarcaciones artesanales' },
       location: { center: [18, -17], zoom: 5 }
     }
