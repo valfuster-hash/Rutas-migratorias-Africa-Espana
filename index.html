@@ -8,37 +8,48 @@
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-  <!-- Styles for the scrollytelling layout (dark overlay) -->
+  <!-- PolylineDecorator CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.polylinedecorator/dist/leaflet.polylineDecorator.css" />
+
+  <!-- Styles for scrollytelling -->
   <link rel="stylesheet" href="scroll.css" />
 </head>
-<body>
 
-  <!-- Fullscreen map -->
+<body>
   <div id="map"></div>
 
-  <!-- Overlay scrollytelling (dark) -->
   <aside id="overlay" class="overlay overlay-dark">
     <header class="brand">
       <h1>Rutas migratorias hacia España</h1>
-      <p>Desplázate para avanzar por los capítulos. El mapa se actualizará automáticamente.</p>
+      <p>Desplázate o usa los botones para avanzar.</p>
     </header>
+
+    <div class="nav-buttons">
+      <button id="prevBtn">← Anterior</button>
+      <button id="nextBtn">Siguiente →</button>
+    </div>
+
     <div id="steps" class="steps"></div>
-    <footer class="footnote">Fuentes en cada capítulo cuando están disponibles.</footer>
+
+    <footer class="footnote">Fuentes disponibles por capítulo.</footer>
   </aside>
 
-  <!-- Polyfill (for older browsers) -->
+  <!-- Polyfills -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- Scrollama (scrollytelling helper) -->
+  <!-- PolylineDecorator JS -->
+  <script src="https://unpkg.com/leaflet.polylinedecorator/dist/leaflet.polylineDecorator.min.js"></script>
+
+  <!-- Scrollama -->
   <script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.min.js"></script>
 
-  <!-- Config (GeoJSON + chapters) -->
+  <!-- Config -->
   <script src="config.js"></script>
 
-  <!-- Story logic -->
+  <!-- Story Logic -->
   <script src="story.js"></script>
 </body>
 </html>
