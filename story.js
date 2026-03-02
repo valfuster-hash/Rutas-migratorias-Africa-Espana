@@ -1,19 +1,16 @@
-// ---------- Story logic (Leaflet + Scrollama) ----------
+// ---------- STORYMAP FULLSCREEN with FLECHAS + OPACITY + BOTONERA ----------
 (function(){
-  // Map init
-  const map = L.map('map', {
-    center: [27, -15],
-    zoom: 4,
-    zoomControl: true
-  });
+  // ---------- MAP DARK BASEMAP
+  const map = L.map('map', { center:[27,-15], zoom:4, zoomControl:true });
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 12,
-    attribution: '© OpenStreetMap'
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution:'© OpenStreetMap · CARTO'
   }).addTo(map);
 
-  // Base routes (muted)
-  const colorByRisk = (val) => {
+  // ---------- BASE ROUTES with ANIMATED OPACITY
+  let baseOpacity = 0.35;
+
+  const colorByRisk = val => {
     if (!val) return '#9ca3af';
     const v = String(val).toLowerCase();
     if (v.includes('extrema')) return '#8b0000';
@@ -23,118 +20,95 @@
   };
 
   const baseRoutes = L.geoJSON(RUTAS_GEOJSON, {
-    style: f => ({ color: colorByRisk(f.properties?.peligrosidad), weight: 3, opacity: 0.35 })
+    style: f => ({ color: colorByRisk(f.properties.peligrosidad), weight:3, opacity:baseOpacity })
   }).addTo(map);
 
-  // Highlight layer for active chapter
-  const highlightLayer = L.geoJSON(null, { style: { color: '#f43f5e', weight: 6, opacity: 0.95 } }).addTo(map);
-
-  function getFeatureByCodigo(codigo){
-    return RUTAS_GEOJSON.features.find(f => f.properties && f.properties.codigo === codigo);
+  function fadeBase(to){
+    baseRoutes.setStyle({ opacity:to });
   }
 
-  function fitFeature(feat){
-    try{
-      const layer = L.geoJSON(feat);
-      const b = layer.getBounds();
-      map.flyToBounds(b, { padding: [48,48], duration: 1.6 });
-    }catch(e){
-      // fallback center/zoom from config if provided
-    }
+  // ---------- HIGHLIGHT LAYER + FLECHAS
+  const highlightLayer = L.geoJSON(null, { style:{ color:'#f43f5e', weight:6, opacity:0.95 } }).addTo(map);
+  let arrowLayer = null;
+
+  function setArrowsOnFeature(feature){
+    if(arrowLayer) map.removeLayer(arrowLayer);
+    arrowLayer = L.polylineDecorator(L.geoJSON(feature).getLayers()[0],{
+      patterns:[{
+        offset:'5%',
+        repeat:'10%',
+        symbol:L.Symbol.arrowHead({ pixelSize:10, polygon:false, pathOptions:{ color:'#f43f5e', weight:2 } })
+      }]
+    }).addTo(map);
   }
 
-  function activateChapter(chapter){
-    const feat = getFeatureByCodigo(chapter.codigo);
-    if (!feat) return;
+  // ---------- CHAPTER HANDLING
+  function getFeatureByCodigo(codigo){ return RUTAS_GEOJSON.features.find(f => f.properties.codigo===codigo); }
+
+  function activateChapter(ch){
+    const feat = getFeatureByCodigo(ch.codigo);
+    if(!feat) return;
+
+    fadeBase(0.15);    // opacidad baja al entrar
+
     highlightLayer.clearLayers();
     highlightLayer.addData(feat);
-    highlightLayer.bringToFront();
-    fitFeature(feat);
+
+    setArrowsOnFeature(feat);
+
+    const b = L.geoJSON(feat).getBounds();
+    map.flyToBounds(b, { padding:[50,50], duration:1.6 });
   }
 
-  // ---------- Build steps from config ----------
+  // ---------- BUILD STEPS
   const stepsContainer = document.getElementById('steps');
 
-  (config.chapters || []).forEach((ch, idx) => {
-    const feat = getFeatureByCodigo(ch.codigo) || { properties:{} };
-    const p = feat.properties || {};
+  config.chapters.forEach((ch,idx)=>{
+    const step = document.createElement('section');
+    step.className='step'; step.dataset.index=idx;
 
-    const section = document.createElement('section');
-    section.className = 'step';
-    section.dataset.index = idx;
+    step.innerHTML = `
+      <h2>${ch.title}</h2>
+      <div class="meta">${ch.codigo}</div>
+      ${ ch.image && ch.image.src ? `<img src="${ch.image.src}" alt="${ch.image.alt}">` : '' }
+      <p>${ch.text}</p>
+    `;
 
-    const h2 = document.createElement('h2');
-    h2.textContent = ch.title || p.nombre || ch.codigo;
-
-    const meta = document.createElement('div');
-    meta.className = 'meta';
-    const pieces = [];
-    if (p.peligrosidad) pieces.push(`Peligrosidad: ${p.peligrosidad}`);
-    if (typeof p.distancia_km_aprox !== 'undefined') pieces.push(`${p.distancia_km_aprox} km aprox.`);
-    if (p.frecuencia_anual_aprox) pieces.push(`Frecuencia: ${p.frecuencia_anual_aprox}`);
-    meta.textContent = pieces.join(' · ');
-
-    const img = document.createElement('img');
-    const src = (ch.image && (ch.image.src || ch.image)) || '';
-    if (src){ img.src = src; img.alt = (ch.image && ch.image.alt) || h2.textContent; }
-
-    const para = document.createElement('p');
-    para.textContent = ch.text || p.descripcion || '';
-
-    // sources if available
-    if (Array.isArray(p.fuentes) && p.fuentes.length){
-      const sources = document.createElement('p');
-      sources.className = 'meta';
-      sources.textContent = `Fuentes: ${p.fuentes.join(', ')}`;
-      section.appendChild(sources);
-    }
-
-    section.appendChild(h2);
-    section.appendChild(meta);
-    if (src) section.appendChild(img);
-    section.appendChild(para);
-
-    stepsContainer.appendChild(section);
+    stepsContainer.appendChild(step);
   });
 
-  // ---------- Scrollama setup ----------
+  const steps = Array.from(document.querySelectorAll('.step'));
+  let active = 0;
+
+  // ---------- SCROLLAMA
   const scroller = scrollama();
 
   function handleStepEnter(resp){
-    const el = resp.element; // section
-    document.querySelectorAll('.step.active').forEach(s => s.classList.remove('active'));
+    const el = resp.element;
+    steps.forEach(s=>s.classList.remove('active'));
     el.classList.add('active');
 
-    const idx = Number(el.dataset.index || 0);
-    const chapter = config.chapters[idx];
-    activateChapter(chapter);
+    active = Number(el.dataset.index);
+    activateChapter(config.chapters[active]);
   }
 
-  function initScroll(){
-    scroller
-      .setup({ step: '.step', offset: 0.66, debug: false })
-      .onStepEnter(handleStepEnter);
+  scroller.setup({ step:'.step', offset:0.66 }).onStepEnter(handleStepEnter);
+  window.addEventListener('resize', scroller.resize);
 
-    window.addEventListener('resize', scroller.resize);
+  // Activate first
+  steps[0].classList.add('active');
+  activateChapter(config.chapters[0]);
 
-    // Activate first chapter
-    const first = document.querySelector('.step');
-    if (first){ first.classList.add('active'); handleStepEnter({ element:first }); }
-  }
+  // ---------- BUTTON NAVIGATION
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
 
-  initScroll();
-
-  // Optional: legend for risk colors
-  const legend = L.control({ position: 'bottomleft' });
-  legend.onAdd = function(){
-    const div = L.DomUtil.create('div', 'legend');
-    div.innerHTML = `
-      <div><strong>Peligrosidad (base)</strong></div>
-      <div class="row"><span class="sw" style="background:#8b0000"></span>Extrema</div>
-      <div class="row"><span class="sw" style="background:#e34a33"></span>Muy alta</div>
-      <div class="row"><span class="sw" style="background:#fdbb84"></span>Alta</div>
-    `;
-    return div;
+  prevBtn.onclick = () => {
+    if(active > 0){ steps[active-1].scrollIntoView({ behavior:'smooth' }); }
   };
-  legend.addTo(map);
+
+  nextBtn.onclick = () => {
+    if(active < steps.length-1){ steps[active+1].scrollIntoView({ behavior:'smooth' }); }
+  };
+
 })();
