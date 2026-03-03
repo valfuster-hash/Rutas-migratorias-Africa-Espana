@@ -1,30 +1,31 @@
-// ---------- STORYMAP FULLSCREEN with SNAKE + FLECHAS + PUNTOS + BOTONERA + NEW BASEMAP ----------
+// ---------- STORYMAP FULLSCREEN with SNAKE + FLECHAS + PUNTOS + BOTONERA ----------
 (function(){
 
-  // ---------- MAP BASELAYERS: Terreno político + relieve (Stamen Terrain vía Stadia) ----------
+  // ---------- MAP BASELAYERS: CARTO Positron (sin API key) ----------
   const map = L.map('map', { center:[27,-15], zoom:4, zoomControl:true });
 
-  // Basemap principal (político + relieve + fronteras)
+  // Basemap principal (CARTO Positron)
   const terrain = L.tileLayer(
     'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
     {
-      attribution: '© OpenStreetMap, © CARTO',
-      maxZoom: 19
+      maxZoom: 19,
+      attribution: '© OpenStreetMap • © CARTO'
     }
   ).addTo(map);
 
-  // Basemap oscuro
+  // Basemap oscuro (opcional)
   const dark = L.tileLayer(
     'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-    { attribution: '© OpenStreetMap · © CARTO' }
+    { maxZoom: 19, attribution: '© OpenStreetMap • © CARTO' }
   );
 
   // Control de capas
   L.control.layers(
-    { 'Terreno + fronteras': terrain, 'Oscuro': dark },
+    { 'CARTO Positron': terrain, 'CARTO Dark': dark },
     null,
     { position:'topleft' }
   ).addTo(map);
+
 
   // ---------- BASE ROUTES with ANIMATED OPACITY ----------
   let baseOpacity = 0.35;
@@ -162,7 +163,7 @@
     step.innerHTML = `
       <h2>${ch.title || p.nombre || ch.codigo}</h2>
       <div class="meta">${metaItems.join(' · ')}</div>
-      ${ ch.image && ch.image.src ? `<img src="${ch.image.src}" alt="${ch.image.alt || ''}">` : '' }
+      ${ ch.image && ch.image.src ? `<img src="${ch.image.src}" alt="${ch.image.alt}">` : '' }
       <p>${ch.text || p.descripcion || ''}</p>
     `;
 
