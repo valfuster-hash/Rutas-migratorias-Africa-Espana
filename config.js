@@ -160,49 +160,49 @@ const config = {
       title: 'Ruta Atlántica Principal (Senegal → Canarias)',
       text: 'La ruta más activa y peligrosa hacia España, reactivada desde 2023–2024.',
       image: { src: 'images/WAAR_1_mockup_v2.jpg', alt: 'Cayucos en la costa de Senegal rumbo a Canarias' },
-      location: { center: [20, -16], zoom: 5 }
+      location: { center: [20, -16], zoom: 15 }
     },
     {
       codigo: 'WAAR_2',
       title: 'Mauritania → Canarias',
       text: 'Incluida en la Northwest African Atlantic Route según UNODC.',
       image: { src: 'images/WAAR_2_mockup_v2.jpg', alt: 'Tramo costero de Mauritania hacia Canarias' },
-      location: { center: [23, -16], zoom: 6 }
+      location: { center: [23, -16], zoom: 16 }
     },
     {
       codigo: 'WAAR_3',
       title: 'Sahara Occidental → Canarias',
       text: 'Una de las rutas más utilizadas desde 2020.',
       image: { src: 'images/WAAR_3_mockup_v2.jpg', alt: 'Embarcaciones cercanas a El Aaiún rumbo a Canarias' },
-      location: { center: [28, -15], zoom: 6 }
+      location: { center: [28, -15], zoom: 16 }
     },
     {
       codigo: 'WMR_1',
       title: 'Tánger → Tarifa (Estrecho de Gibraltar)',
       text: 'Una ruta corta pero muy peligrosa.',
       image: { src: 'images/WMR_1_mockup_v2.jpg', alt: 'Vista del Estrecho de Gibraltar entre Tánger y Tarifa' },
-      location: { center: [35.8, -5.5], zoom: 8 }
+      location: { center: [35.8, -5.5], zoom: 18 }
     },
     {
       codigo: 'WMR_2',
       title: 'Nador → Melilla',
       text: 'Ruta mixta marítima y terrestre hacia la ciudad española.',
       image: { src: 'images/WMR_2_mockup_v2.jpg', alt: 'Bahía próxima a Melilla desde Nador' },
-      location: { center: [35.25, -2.9], zoom: 9 }
+      location: { center: [35.25, -2.9], zoom: 19 }
     },
     {
       codigo: 'WMR_3',
       title: 'Argel → Andalucía',
       text: 'Ruta mediterránea con destino sur de España.',
       image: { src: 'images/WMR_3_mockup_v2.jpg', alt: 'Trayecto marítimo desde Argel hacia Andalucía' },
-      location: { center: [36.5, 0], zoom: 5 }
+      location: { center: [36.5, 0], zoom: 15 }
     },
     {
       codigo: 'WAAR_4',
       title: 'Gambia → Canarias',
       text: 'Una variante extremely peligrosa de la ruta atlántica.',
       image: { src: 'images/WAAR_4_mockup_v2.jpg', alt: 'Costa de Gambia con embarcaciones artesanales' },
-      location: { center: [18, -17], zoom: 5 }
+      location: { center: [18, -17], zoom: 15 }
     }
   ]
 };
