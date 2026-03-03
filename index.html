@@ -6,18 +6,22 @@
   <title>Rutas migratorias hacia España</title>
 
   <!-- Leaflet CSS -->
-  <link rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
 
   <!-- Estilos del scrollytelling -->
-  <link rel="stylesheet"
-        href="https://valfuster-hash.github.io/Rutas-migratorias/scroll.css?v=1" />
+  <link
+    rel="stylesheet"
+    href="https://valfuster-hash.github.io/Rutas-migratorias/scroll.css?v=2"
+  />
 
   <meta name="color-scheme" content="dark light" />
 </head>
 
 <body>
-  <!-- Mapa -->
+  <!-- Contenedor del mapa -->
   <div id="map"></div>
 
   <!-- Overlay narrativo -->
@@ -37,25 +41,25 @@
     <footer class="footnote">Fuentes disponibles por capítulo.</footer>
   </aside>
 
-  <!-- ========= SCRIPTS (orden correcto, sin SRI, con defer) ========= -->
+  <!-- ====== SCRIPTS (orden correcto) ====== -->
 
   <!-- Leaflet core -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- Flechas sobre líneas -->
-  <script src="https://unpkg.com/leaflet.polylinedecorator/dist/leaflet.polylineDecorator.min.js" defer></script>
+  <script defer src="https://unpkg.com/leaflet.polylinedecorator/dist/leaflet.polylineDecorator.min.js"></script>
 
   <!-- Animación snake -->
-  <script src="https://unpkg.com/leaflet-polyline-snake-anim/L.Polyline.SnakeAnim.js" defer></script>
+  <script defer src="https://unpkg.com/leaflet-polyline-snake-anim/L.Polyline.SnakeAnim.js"></script>
 
   <!-- Scrollama -->
-  <script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.min.js" defer></script>
+  <script defer src="https://unpkg.com/scrollama@3.2.0/build/scrollama.min.js"></script>
 
   <!-- Tu configuración (GeoJSON + capítulos) -->
-  <script src="https://valfuster-hash.github.io/Rutas-migratorias/config.js?v=1" defer></script>
+  <script defer src="https://valfuster-hash.github.io/Rutas-migratorias/config.js?v=2"></script>
 
   <!-- Lógica del StoryMap (usa config.js) -->
-  <script src="https://valfuster-hash.github.io/Rutas-migratorias/story.js?v=1" defer></script>
+  <script defer src="https://valfuster-hash.github.io/Rutas-migratorias/story.js?v=2"></script>
 
   <noscript>
     <p style="position:fixed;top:0;left:0;width:100%;padding:12px;background:#111;color:#fff;z-index:10000;">
@@ -64,3 +68,4 @@
   </noscript>
 </body>
 </html>
+``
