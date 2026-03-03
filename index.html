@@ -3,22 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StoryMap – Rutas Migratorias hacia España (Fullscreen)</title>
+  <title>Rutas migratorias hacia España</title>
 
   <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
   <!-- PolylineDecorator CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.polylinedecorator/dist/leaflet.polylineDecorator.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.polylinedecorator/dist/leaflet.polylineDecorator.css" />
 
-  <!-- Styles for scrollytelling -->
-  <link rel="stylesheet" href="scroll.css"/>
+  <!-- Scroll / overlay CSS -->
+  <link rel="stylesheet" href="scroll.css" />
 </head>
 
 <body>
 
+  <!-- Mapa -->
   <div id="map"></div>
 
+  <!-- Overlay narrativo -->
   <aside id="overlay" class="overlay overlay-dark">
     <header class="brand">
       <h1>Rutas migratorias hacia España</h1>
@@ -38,22 +40,22 @@
   <!-- Polyfills -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
 
-  <!-- Leaflet JS -->
+  <!-- Leaflet -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- PolylineDecorator JS -->
+  <!-- PolylineDecorator -->
   <script src="https://unpkg.com/leaflet.polylinedecorator/dist/leaflet.polylineDecorator.min.js"></script>
 
-  <!-- Snake animation plugin -->
+  <!-- Snake Animation -->
   <script src="https://unpkg.com/leaflet-polyline-snake-anim/L.Polyline.SnakeAnim.js"></script>
 
   <!-- Scrollama -->
   <script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.min.js"></script>
 
-  <!-- Config -->
+  <!-- Tu config (geojson + capítulos) -->
   <script src="config.js"></script>
 
-  <!-- Story Logic -->
+  <!-- Lógica principal -->
   <script src="story.js"></script>
 
 </body>
