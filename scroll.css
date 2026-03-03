@@ -201,3 +201,36 @@ html, body{
   clear: both;
   padding-top: 10px;
 }
+
+/* BLOQUES SEPARADOS TEXTO / IMAGEN */
+.step-text {
+  padding: 40px 20px;
+}
+
+.step-image {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.step-image img {
+  width: 70%;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.4);
+}
+
+/* Alternancia */
+.step-image.left img {
+  margin-right: auto;
+}
+
+.step-image.right img {
+  margin-left: auto;
+}
+
+/* Evitar que texto se meta bajo la imagen */
+.step p {
+  clear: both;
+}
