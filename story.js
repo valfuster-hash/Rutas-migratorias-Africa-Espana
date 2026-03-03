@@ -1,31 +1,31 @@
-
-// ---------- STORYMAP FULLSCREEN with SNAKE + FLECHAS + PUNTOS + BOTONERA + NEW BASEMAP ----------
+// ---------- STORYMAP FULLSCREEN with SNAKE + FLECHAS + PUNTOS + BOTONERA ----------
 (function(){
 
-  // ---------- MAP BASELAYERS: Terreno político + relieve (Stamen Terrain vía Stadia) ----------
+  // ---------- MAP BASELAYERS: CARTO Positron (sin API key) ----------
   const map = L.map('map', { center:[27,-15], zoom:4, zoomControl:true });
 
-  // Basemap principal (político + relieve + fronteras)
+  // Basemap principal (CARTO Positron)
   const terrain = L.tileLayer(
-    'https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}.jpg',
+    'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
     {
-      maxZoom: 17,
-      attribution: 'Map tiles © Stamen · Data © OpenStreetMap contributors'
+      maxZoom: 19,
+      attribution: '© OpenStreetMap • © CARTO'
     }
   ).addTo(map);
 
-  // Basemap oscuro
+  // Basemap oscuro (opcional)
   const dark = L.tileLayer(
     'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-    { attribution: '© OpenStreetMap · © CARTO' }
+    { maxZoom: 19, attribution: '© OpenStreetMap • © CARTO' }
   );
 
   // Control de capas
   L.control.layers(
-    { 'Terreno + fronteras': terrain, 'Oscuro': dark },
+    { 'CARTO Positron': terrain, 'CARTO Dark': dark },
     null,
     { position:'topleft' }
   ).addTo(map);
+
 
   // ---------- BASE ROUTES with ANIMATED OPACITY ----------
   let baseOpacity = 0.35;
