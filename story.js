@@ -1,4 +1,3 @@
-
 // ---------- STORYMAP FULLSCREEN with ZOOM CINEMÁTICO + DESENFOQUE + SLIDE IMAGES ----------
 (function(){
 
