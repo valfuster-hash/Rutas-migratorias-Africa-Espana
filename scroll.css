@@ -196,4 +196,19 @@ html, body{
   .step-image img{
     width:90%;
   }
+  
+/* ANIMACIÓN CINEMATOGRÁFICA PARA LAS IMÁGENES */
+.step img {
+  opacity: 0;
+  transform: translateY(20px) scale(0.92);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+}
+
+/* Cuando el step está activo, animamos la imagen */
+.step.active img {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
 }
