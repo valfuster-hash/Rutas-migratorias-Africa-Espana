@@ -1,22 +1,22 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rutas migratorias hacia España</title>
 
   <!-- Leaflet CSS -->
-  https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous" />
 
-  <!-- PolylineDecorator CSS -->
-  https://unpkg.com/leaflet.polylinedecorator/dist/leaflet.polylineDecorator.css
+  <!-- Estilos del scrollytelling -->
+  <link rel="stylesheet" href="scroll.css" />
 
-  <!-- Scroll / overlay CSS -->
-  scroll.css
+  <!-- Preferencias de color (opcional) -->
+  <meta name="color-scheme" content="dark light" />
 </head>
 
 <body>
-
   <!-- Mapa -->
   <div id="map"></div>
 
@@ -28,35 +28,41 @@
     </header>
 
     <div class="nav-buttons">
-      <button id="prevBtn">← Anterior</button>
-      <button id="nextBtn">Siguiente →</button>
+      <button id="prevBtn" type="button">← Anterior</button>
+      <button id="nextBtn" type="button">Siguiente →</button>
     </div>
 
     <div id="steps" class="steps"></div>
 
-    <footer class="footnote">Fuentes disponibles por capítulo.</footer>
+    <footer class="footnote">
+      Fuentes disponibles por capítulo.
+    </footer>
   </aside>
 
-  <!-- Polyfills -->
-  https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver</script>
+  <!-- ================== SCRIPTS (orden correcto) ================== -->
 
-  <!-- Leaflet -->
-  https://unpkg.com/leaflet@1.9.4/dist/leaflet.js</script>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
 
-  <!-- PolylineDecorator -->
-  https://unpkg.com/leaflet.polylinedecorator/dist/leaflet.polylineDecorator.min.js</script>
+  <!-- PolylineDecorator (flechas) -->
+  <script src="https://unpkg.com/leaflet.polylinedecorator/dist/leaflet.polylineDecorator.min.js" defer></script>
 
-  <!-- Snake Animation -->
-  https://unpkg.com/leaflet-polyline-snake-anim/L.Polyline.SnakeAnim.js
+  <!-- Snake animation -->
+  <script src="https://unpkg.com/leaflet-polyline-snake-anim/L.Polyline.SnakeAnim.js" defer></script>
 
   <!-- Scrollama -->
-  https://unpkg.com/scrollama@3.2.0/build/scrollama.min.js
+  <script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.min.js" defer></script>
 
-  <!-- Tu config (geojson + capítulos) -->
-  config.js</script>
+  <!-- Tu configuración (GeoJSON + capítulos) - DEBE IR ANTES que story.js -->
+  <script src="config.js" defer></script>
 
-  <!-- Lógica principal -->
-  story.js</script>
+  <!-- Lógica del StoryMap (usa lo que define config.js) -->
+  <script src="story.js" defer></script>
 
+  <noscript>
+    <p style="position:fixed;top:0;left:0;width:100%;padding:12px;background:#111;color:#fff;z-index:10000;">
+      Este sitio necesita JavaScript para funcionar.
+    </p>
+  </noscript>
 </body>
 </html>
