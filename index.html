@@ -1,63 +1,146 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rutas migratorias hacia España</title>
-  <link rel="icon" type="image/png" href="https://umap.openstreetmap.fr/es/map/mapa-sin-titulo_1366701">
+  <title>StoryMap – Rutas Migratorias hacia España</title>
   
   <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
 
-  <!-- PolylineDecorator CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.polylinedecorator/dist/leaflet.polylineDecorator.css" />
+  <!-- Leaflet JS -->
+  https://unpkg.com/leaflet@1.9.4/dist/leaflet.js
 
-  <!-- Scroll / overlay CSS -->
-  <link rel="stylesheet" href="scroll.css" />
+  <style>
+    :root {
+      --panel-w: 40vw;
+      --accent: #d10000;
+      --bg: #fafafa;
+      --text: #1f2937;
+      --muted: #6b7280;
+    }
+
+    html, body { height: 100%; }
+    body { margin: 0; font-family: system-ui; background: var(--bg); color: var(--text); }
+
+    #map {
+      position: fixed;
+      top: 0; bottom: 0; right: 0;
+      left: var(--panel-w);
+    }
+
+    #story {
+      position: fixed;
+      top: 0; bottom: 0;
+      left: 0; width: var(--panel-w);
+      overflow-y: auto;
+      background: #fff;
+      border-right: 1px solid #ddd;
+    }
+
+    .story-inner { padding: 24px; }
+    .header { position: sticky; top: 0; background: #fff; padding-bottom: 10px; }
+    .chapter { padding: 30px 0; border-bottom: 1px solid #eee; min-height: 90vh; }
+    .chapter.active { background: #fff7f7; }
+    .chapter img { width: 100%; border-radius: 8px; margin: 10px 0; }
+
+    @media (max-width: 900px) {
+      :root { --panel-w: 100vw; }
+      #map { position: relative; height: 50vh; left: 0; }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- Mapa -->
-  <div id="map"></div>
-
-  <!-- Overlay narrativo -->
-  <aside id="overlay" class="overlay overlay-dark">
-    <header class="brand">
+<div id="story">
+  <div class="story-inner">
+    <div class="header">
       <h1>Rutas migratorias hacia España</h1>
-      <p>Desplázate hacia abajo para avanzar.</p>
-    </header>
-
-    <div class="nav-buttons">
-      <button id="prevBtn">← Anterior</button>
-      <button id="nextBtn">Siguiente →</button>
+      <p>Desplázate para explorar las rutas.</p>
     </div>
+    <div id="chapters"></div>
+  </div>
+</div>
 
-    <div id="steps" class="steps"></div>
+<div id="map"></div>
 
-    <footer class="footnote">Fuentes disponibles por capítulo.</footer>
-  </aside>
+<!-- Config.js debe estar bien enlazado -->
+config.js</script>
 
-  <!-- Polyfills -->
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
+<script>
+  // Todo el JS de Leaflet + Scroll se mantiene aquí
+  // IMPORTANTE: este bloque funciona bien en GitHub Pages
+  const map = L.map('map', {
+    center: [27, -15],
+    zoom: 4
+  });
 
-  <!-- Leaflet -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-  <!-- PolylineDecorator -->
-  <script src="https://unpkg.com/leaflet.polylinedecorator/dist/leaflet.polylineDecorator.min.js"></script>
+  const colorByRisk = r => r.includes("Extrema") ? "#8b0000" :
+                        r.includes("Muy alta")   ? "#e34a33" :
+                        "#fdbb84";
 
-  <!-- Snake Animation -->
-  <script src="https://unpkg.com/leaflet-polyline-snake-anim/L.Polyline.SnakeAnim.js"></script>
+  const baseRoutes = L.geoJSON(RUTAS_GEOJSON, {
+    style: f => ({
+      color: colorByRisk(f.properties.peligrosidad),
+      weight: 3,
+      opacity: 0.4
+    })
+  }).addTo(map);
 
-  <!-- Scrollama -->
-  <script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.min.js"></script>
+  let highlightLayer = L.geoJSON(null, {
+    style: { color: '#d10000', weight: 6 }
+  }).addTo(map);
 
-  <!-- Tu config (geojson + capítulos) -->
-  <script src="config.js"></script>
+  function getFeature(codigo) {
+    return RUTAS_GEOJSON.features.find(f => f.properties.codigo === codigo);
+  }
 
-  <!-- Lógica principal -->
-  <script src="story.js"></script>
+  function activateChapter(ch) {
+    const feat = getFeature(ch.codigo);
+    highlightLayer.clearLayers();
+    highlightLayer.addData(feat);
+    map.flyToBounds(L.geoJSON(feat).getBounds(), { duration: 1.3 });
+  }
+
+  const container = document.getElementById("chapters");
+
+  config.chapters.forEach((ch, i) => {
+    const section = document.createElement("div");
+    section.className = "chapter";
+    section.id = "chapter-" + i;
+
+    section.innerHTML = `
+      <h2>${ch.title}</h2>
+      ${ch.image.src}
+      <p>${ch.text}</p>
+    `;
+
+    container.appendChild(section);
+  });
+
+  const chapters = Array.from(document.querySelectorAll(".chapter"));
+  let active = 0;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio > 0.55) {
+        const i = chapters.indexOf(entry.target);
+        chapters[active].classList.remove("active");
+        entry.target.classList.add("active");
+        active = i;
+        activateChapter(config.chapters[i]);
+      }
+    });
+  }, { threshold: [0.55] });
+
+  chapters.forEach(ch => observer.observe(ch));
+  chapters[0].classList.add("active");
+  activateChapter(config.chapters[0]);
+</script>
 
 </body>
 </html>
