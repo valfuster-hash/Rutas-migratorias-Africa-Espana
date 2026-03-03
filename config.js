@@ -159,50 +159,64 @@ const config = {
       codigo: 'WAAR_1',
       title: 'Ruta Atlántica Principal (Senegal → Canarias)',
       text: 'La ruta más activa y peligrosa hacia España, reactivada desde 2023–2024.',
-      image: { src: 'images/WAAR_1_mockup_v2.jpg', alt: 'Cayucos en la costa de Senegal rumbo a Canarias' },
-      location: { center: [20, -16], zoom: 5 }
+      image: { 
+        src: '<img src="images/WAAR_1_mockup_v2.jpg" alt="Cayucos en la costa de Senegal rumbo a Canarias">' 
+      },
+      location: { center: [14.9, -17.0], zoom: 7 }
     },
     {
       codigo: 'WAAR_2',
       title: 'Mauritania → Canarias',
       text: 'Incluida en la Northwest African Atlantic Route según UNODC.',
-      image: { src: 'images/WAAR_2_mockup_v2.jpg', alt: 'Tramo costero de Mauritania hacia Canarias' },
-      location: { center: [23, -16], zoom: 6 }
+      image: { 
+        src: '<img src="images/WAAR_2_mockup_v2.jpg" alt="Tramo costero de Mauritania hacia Canarias">' 
+      },
+      location: { center: [20.8, -15.9], zoom: 7 }
     },
     {
       codigo: 'WAAR_3',
       title: 'Sahara Occidental → Canarias',
       text: 'Una de las rutas más utilizadas desde 2020.',
-      image: { src: 'images/WAAR_3_mockup_v2.jpg', alt: 'Embarcaciones cercanas a El Aaiún rumbo a Canarias' },
-      location: { center: [28, -15], zoom: 6 }
+      image: { 
+        src: '<img src="images/WAAR_3_mockup_v2.jpg" alt="Embarcaciones cercanas a El Aaiún rumbo a Canarias">' 
+      },
+      location: { center: [28.8, -15.5], zoom: 7 }
     },
     {
       codigo: 'WMR_1',
       title: 'Tánger → Tarifa (Estrecho de Gibraltar)',
       text: 'Una ruta corta pero muy peligrosa.',
-      image: { src: 'images/WMR_1_mockup_v2.jpg', alt: 'Vista del Estrecho de Gibraltar entre Tánger y Tarifa' },
-      location: { center: [35.8, -5.5], zoom: 8 }
+      image: { 
+        src: '<img src="images/WMR_1_mockup_v2.jpg" alt="Vista del Estrecho de Gibraltar entre Tánger y Tarifa">' 
+      },
+      location: { center: [35.86, -5.55], zoom: 10 }
     },
     {
       codigo: 'WMR_2',
       title: 'Nador → Melilla',
       text: 'Ruta mixta marítima y terrestre hacia la ciudad española.',
-      image: { src: 'images/WMR_2_mockup_v2.jpg', alt: 'Bahía próxima a Melilla desde Nador' },
-      location: { center: [35.25, -2.9], zoom: 9 }
+      image: { 
+        src: '<img src="images/WMR_2_mockup_v2.jpg" alt="Bahía próxima a Melilla desde Nador">' 
+      },
+      location: { center: [35.29, -2.93], zoom: 12 }
     },
     {
       codigo: 'WMR_3',
       title: 'Argel → Andalucía',
       text: 'Ruta mediterránea con destino sur de España.',
-      image: { src: 'images/WMR_3_mockup_v2.jpg', alt: 'Trayecto marítimo desde Argel hacia Andalucía' },
-      location: { center: [36.5, 0], zoom: 5 }
+      image: { 
+        src: '<img src="images/WMR_3_mockup_v2.jpg" alt="Trayecto marítimo desde Argel hacia Andalucía">' 
+      },
+      location: { center: [36.75, 3.05], zoom: 7 }
     },
     {
       codigo: 'WAAR_4',
       title: 'Gambia → Canarias',
-      text: 'Una variante extremely peligrosa de la ruta atlántica.',
-      image: { src: 'images/WAAR_4_mockup_v2.jpg', alt: 'Costa de Gambia con embarcaciones artesanales' },
-      location: { center: [18, -17], zoom: 5 }
+      text: 'Una variante extremadamente peligrosa de la ruta atlántica.',
+      image: { 
+        src: '<img src="images/WAAR_4_mockup_v2.jpg" alt="Costa de Gambia con embarcaciones artesanales">' 
+      },
+      location: { center: [13.5, -16.5], zoom: 7 }
     }
   ]
 };
