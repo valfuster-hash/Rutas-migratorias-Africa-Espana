@@ -138,10 +138,12 @@
 
     snakeLine.snakeIn();
 
-    setPointsOnLatLngs(latlngs, feat.properties || {});
+    setPointsOnLatLngs(latlngs, feat.properties);
 
-    const b = L.latLngBounds(latlngs);
-    map.flyToBounds(b, { padding:[50,50], duration:1.6 });
+    
+    if (ch.location){
+      map.flyTo(ch.location.center, ch.location.zoom, { duration: 1.5 });
+    }
   }
 
   // ---------- STEPS ----------
@@ -160,12 +162,20 @@
     step.className = 'step';
     step.dataset.index = idx;
 
-    step.innerHTML = `
-      <h2>${ch.title || p.nombre || ch.codigo}</h2>
-      <div class="meta">${metaItems.join(' · ')}</div>
-      ${ ch.image && ch.image.src ? `<img src="${ch.image.src}" alt="${ch.image.alt}">` : '' }
-      <p>${ch.text || p.descripcion || ''}</p>
-    `;
+    
+   const sideClass = (idx % 2 === 0) ? 'img-right' : 'img-left';
+
+   step.innerHTML = `
+    <h2>${ch.title}</h2>
+    <div class="meta">${metaItems.join(' · ')}</div>
+
+    <div class="img-container ${sideClass}">
+      <img src="${ch.image.src}" alt="${ch.image.alt}" />
+    </div>
+
+    <p>${ch.text}</p>
+`;
+
 
     stepsContainer.appendChild(step);
   });
