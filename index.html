@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StoryMap – Rutas Migratorias hacia España</title>
-  
+
   <!-- Leaflet CSS -->
-  https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
   <!-- Leaflet JS -->
-  https://unpkg.com/leaflet@1.9.4/dist/leaflet.js
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <style>
     :root {
@@ -65,12 +65,10 @@
 
 <div id="map"></div>
 
-<!-- Config.js debe estar bien enlazado -->
-config.js</script>
+<!-- Cargar config.js correctamente -->
+<script src="config.js"></script>
 
 <script>
-  // Todo el JS de Leaflet + Scroll se mantiene aquí
-  // IMPORTANTE: este bloque funciona bien en GitHub Pages
   const map = L.map('map', {
     center: [27, -15],
     zoom: 4
@@ -114,7 +112,7 @@ config.js</script>
 
     section.innerHTML = `
       <h2>${ch.title}</h2>
-      ${ch.image.src}
+      <img src="${ch.image.src}" alt="${ch.image.alt}">
       <p>${ch.text}</p>
     `;
 
