@@ -237,6 +237,12 @@ const config = {
       codigo: 'WAAR_4',
       title: 'Gambia → Canarias',
       text: 'Una variante extremely peligrosa de la ruta atlántica.',
+          <br><br>
+          <a href="https://www.laprovincia.es/canarias/2026/01/07/jinack-nuevo-epicentro-mortal-ruta-125459243.html"
+          target="_blank" rel="noopener noreferrer">
+          Lee los informes de la organización Caminando Fronteras
+          </a>
+      `,
       image: { src: 'images/WAAR_4_mockup_v2.jpg', alt: 'Costa de Gambia con embarcaciones artesanales' },
       location: { center: [18, -17], zoom: 5 }
     }
