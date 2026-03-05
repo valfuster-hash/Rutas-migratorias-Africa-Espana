@@ -224,6 +224,12 @@ const config = {
       codigo: 'WMR_3',
       title: 'Argel → Andalucía',
       text: 'Ruta mediterránea con destino sur de España.',
+          <br><br>
+          <a href="https://www.larazon.es/andalucia/inmigracion-argelia-nota-centros-menores-andalucia_2026012769784672eb223406e5b03a98.html"
+          target="_blank" rel="noopener noreferrer">
+          Lee la noticia en La Razón
+          </a>
+      `,
       image: { src: 'images/WMR_3_mockup_v2.jpg', alt: 'Trayecto marítimo desde Argel hacia Andalucía' },
       location: { center: [36.5, 0], zoom: 5 }
     },
