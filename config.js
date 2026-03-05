@@ -158,8 +158,7 @@ const config = {
     {
       codigo: 'WAAR_1',
       title: 'Ruta Atlántica Principal (Senegal → Canarias)',
-      text: '
-          La ruta más activa y peligrosa hacia España, reactivada desde 2023–2024.',
+      text: 'La ruta más activa y peligrosa hacia España, reactivada desde 2023–2024.',
           <br><br>
           <a href="https://www.rtve.es/noticias/20240220/busca-dorado-ruta-cayuco-senegal-canarias/15978904.shtml"
           target="_blank" rel="noopener noreferrer">
@@ -172,8 +171,7 @@ const config = {
     {
       codigo: 'WAAR_2',
       title: 'Mauritania → Canarias',
-      text: '
-          Incluida en la Northwest African Atlantic Route según UNODC.',
+      text: 'Incluida en la Northwest African Atlantic Route según UNODC.',
           <br><br>
           <a href="https://www.rtve.es/noticias/20240212/mauritania-a-canarias-clandestinidad-enganos-connivencia/15967225.shtml"
           target="_blank" rel="noopener noreferrer">
@@ -187,6 +185,12 @@ const config = {
       codigo: 'WAAR_3',
       title: 'Sahara Occidental → Canarias',
       text: 'Una de las rutas más utilizadas desde 2020.',
+          <br><br>
+          <a href="https://caminandofronteras.org/rutas/ruta-canaria/"
+          target="_blank" rel="noopener noreferrer">
+          Lee los informes de la organización Caminando Fronteras
+          </a>
+      `,
       image: { src: 'images/WAAR_3_mockup_v2.jpg', alt: 'Embarcaciones cercanas a El Aaiún rumbo a Canarias' },
       location: { center: [28, -15], zoom: 6 }
     },
