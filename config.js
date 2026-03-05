@@ -13,7 +13,7 @@ const RUTAS_GEOJSON = {
         peligrosidad: "Muy alta",
         distancia_km_aprox: 1500,
         frecuencia_anual_aprox: "Alta (decenas de miles de personas)",
-        descripcion: "Ruta marítima desde Senegal hacia Canarias, identificada como la ruta más activa y peligrosa, especialmente reactivada desde 2023-2024.",
+        descripcion: "Ruta marítima desde Senegal hacia Canarias, identificada como la ruta más activa y peligrosa, especialmente reactivada desde 2023-2024. Quienes parten desde Senegal o Mauritania enfrentan un océano impredecible. Corrientes fuertes, embarcaciones frágiles y más de 1.000 km de mar abierto convierten esta ruta en una de las más mortales del mundo.",
         fuentes: ["EOM 2024", "IOM DTM", "UNODC"]
       },
       geometry: {
