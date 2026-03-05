@@ -198,6 +198,12 @@ const config = {
       codigo: 'WMR_1',
       title: 'Tánger → Tarifa (Estrecho de Gibraltar)',
       text: 'Una ruta corta pero muy peligrosa.',
+          <br><br>
+          <a href="https://www.diarioarea.com/campo-de-gibraltar/la-inmigracion-ilegal-en-el-estrecho-de-gibraltar-aumenta-un-57-en-enero/"
+          target="_blank" rel="noopener noreferrer">
+          Lee la noticia del Diario Área
+          </a>
+      `,
       image: { src: 'images/WMR_1_mockup_v2.jpg', alt: 'Vista del Estrecho de Gibraltar entre Tánger y Tarifa' },
       location: { center: [35.8, -5.5], zoom: 8 }
     },
