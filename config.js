@@ -3,7 +3,7 @@
 // -------------------------
 const RUTAS_GEOJSON = {
   type: "FeatureCollection",
-  name: "rutas_migratorias_hacia_españa_ampliado",
+  name: "rutas_migratorias_desde_áfrica_hacia_españa_ampliado",
   features: [
     {
       type: "Feature",
