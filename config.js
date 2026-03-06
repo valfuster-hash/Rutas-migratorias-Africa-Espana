@@ -167,7 +167,7 @@ Lee la noticia en RTVE
 </a>
 `,
       image: {
-        src: "images/WAAR_1_mockup_v2.jpg",
+        src: "images/Senegal_Canarias_v1.jpg",
         alt: "Cayucos en la costa de Senegal rumbo a Canarias"
       },
       location: { center: [20, -16], zoom: 5 }
@@ -185,7 +185,7 @@ Lee la noticia en RTVE
 </a>
 `,
       image: {
-        src: "images/WAAR_2_mockup_v2.jpg",
+        src: "images/Mauritania_Canarias_v1.jpg",
         alt: "Tramo costero de Mauritania hacia Canarias"
       },
       location: { center: [23, -16], zoom: 6 }
@@ -203,7 +203,7 @@ Lee los informes de la organización Caminando Fronteras
 </a>
 `,
       image: {
-        src: "images/WAAR_3_mockup_v2.jpg",
+        src: "images/Sahara_Canarias_v1.jpg",
         alt: "Embarcaciones cercanas a El Aaiún rumbo a Canarias"
       },
       location: { center: [28, -15], zoom: 6 }
@@ -221,7 +221,7 @@ Lee la noticia del Diario Área
 </a>
 `,
       image: {
-        src: "images/WMR_1_mockup_v2.jpg",
+        src: "images/Tanger_Tarifa_v1.jpg",
         alt: "Vista del Estrecho de Gibraltar entre Tánger y Tarifa"
       },
       location: { center: [35.8, -5.5], zoom: 8 }
@@ -257,7 +257,7 @@ Lee la noticia en La Razón
 </a>
 `,
       image: {
-        src: "images/WMR_3_mockup_v2.jpg",
+        src: "images/Argel-Andalucia_v1.jpg",
         alt: "Trayecto marítimo desde Argel hacia Andalucía"
       },
       location: { center: [36.5, 0], zoom: 5 }
@@ -275,7 +275,7 @@ Lee la noticia en La Provincia
 </a>
 `,
       image: {
-        src: "images/WAAR_4_mockup_v2.jpg",
+        src: "images/Gambia-Canarias_v1.jpg",
         alt: "Costa de Gambia con embarcaciones artesanales"
       },
       location: { center: [18, -17], zoom: 5 }
