@@ -177,7 +177,7 @@ Lee la noticia en RTVE
       codigo: "WAAR_2",
       title: "Mauritania → Canarias",
       text: `
-Incluida en la Northwest African Atlantic Route según UNODC.
+La ruta atlántica entre Mauritania y las Islas Canarias es una de las principales vías de migración irregular hacia Europa. Cada año miles de personas intentan cruzar el Atlántico en cayucos o embarcaciones precarias, recorriendo entre 700 y 900 km de océano abierto. La travesía puede durar hasta una semana y está expuesta a corrientes fuertes, falta de combustible y escasez de agua. Por su distancia y condiciones extremas, se considera una de las rutas migratorias más peligrosas del mundo, con cientos de muertes o desapariciones registradas anualmente según la Organización Internacional para las Migraciones.
 <br><br>
 <a href="https://www.rtve.es/noticias/20240212/mauritania-a-canarias-clandestinidad-enganos-connivencia/15967225.shtml"
 target="_blank" rel="noopener noreferrer">
