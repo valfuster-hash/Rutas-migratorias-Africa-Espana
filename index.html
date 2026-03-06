@@ -8,9 +8,6 @@
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
   <style>
     :root {
       --panel-w: 40vw;
@@ -65,10 +62,15 @@
 
 <div id="map"></div>
 
-<!-- Cargar config.js correctamente -->
+<!-- Cargar config.js -->
 <script src="config.js"></script>
 
+<!-- Leaflet JS y Leaflet.curve -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/@elfalem/leaflet-curve/dist/leaflet.curve.js"></script>
+
 <script>
+  // Inicializar el mapa
   const map = L.map('map', {
     center: [27, -15],
     zoom: 4
@@ -76,18 +78,50 @@
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-  const colorByRisk = r => r.includes("Extrema") ? "#8b0000" :
-                        r.includes("Muy alta")   ? "#e34a33" :
-                        "#fdbb84";
+  // -----------------------------
+  // Función para colores según peligrosidad
+  // -----------------------------
+  function getColor(peligrosidad) {
+    switch (peligrosidad) {
+      case "Extrema": return "#8b0000";
+      case "Muy alta": return "#e34a33";
+      case "Alta": return "#ff8c00";
+      case "Media": return "#ffd700";
+      default: return "#999999";
+    }
+  }
 
-  const baseRoutes = L.geoJSON(RUTAS_GEOJSON, {
-    style: f => ({
-      color: colorByRisk(f.properties.peligrosidad),
+  // -----------------------------
+  // Convertir LineString a Leaflet.curve
+  // -----------------------------
+  function geojsonToCurve(feature) {
+    const coords = feature.geometry.coordinates;
+    const curveCoords = ['M', [coords[0][1], coords[0][0]]]; // [lat, lng]
+
+    for (let i = 1; i < coords.length; i++) {
+      const midLat = (coords[i - 1][1] + coords[i][1]) / 2;
+      const midLng = (coords[i - 1][0] + coords[i][0]) / 2;
+      curveCoords.push('Q', [midLat, midLng], [coords[i][1], coords[i][0]]);
+    }
+
+    return curveCoords;
+  }
+
+  // -----------------------------
+  // Dibujar todas las rutas como curvas con color
+  // -----------------------------
+  RUTAS_GEOJSON.features.forEach(f => {
+    const curve = geojsonToCurve(f);
+    L.curve(curve, {
+      color: getColor(f.properties.peligrosidad),
       weight: 3,
-      opacity: 0.4
-    })
-  }).addTo(map);
+      opacity: 0.8
+    }).addTo(map);
+  });
 
+  // -----------------------------
+  // Capa para resaltar ruta activa
+  // -----------------------------
   let highlightLayer = L.geoJSON(null, {
     style: { color: '#d10000', weight: 6 }
   }).addTo(map);
@@ -103,6 +137,9 @@
     map.flyToBounds(L.geoJSON(feat).getBounds(), { duration: 1.3 });
   }
 
+  // -----------------------------
+  // Crear los capítulos del StoryMap
+  // -----------------------------
   const container = document.getElementById("chapters");
 
   config.chapters.forEach((ch, i) => {
