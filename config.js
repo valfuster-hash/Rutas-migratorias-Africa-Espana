@@ -231,7 +231,7 @@ Lee la noticia del Diario Área
       codigo: "WMR_2",
       title: "Nador → Melilla",
       text: `
-Ruta mixta marítima y terrestre hacia la ciudad española.
+Ruta mixta marítima y terrestre. La ruta entre Nador (Marruecos) y Melilla (España) es uno de los pasos más cortos hacia territorio europeo en el norte de África. Aunque la distancia marítima es reducida, muchos migrantes intentan acceder rodeando la costa en pequeñas embarcaciones o intentando saltar el perímetro fronterizo de la ciudad. La fuerte vigilancia y los dispositivos de control convierten esta ruta en altamente peligrosa, con frecuentes intentos colectivos, rescates en el mar y enfrentamientos en la frontera, documentados por organizaciones como la Organización Internacional para las Migraciones.
 <br><br>
 <a href="https://www.borderforensics.org/es/investigations/nadormelilla/"
 target="_blank" rel="noopener noreferrer">
